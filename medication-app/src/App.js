@@ -70,6 +70,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h2 className="title">Witamy na Lek!</h2>
        <header>
           <form id="to-do-form" onSubmit={this.addItem}>
             <input type="text" placeholder="Dodaj leki.."
