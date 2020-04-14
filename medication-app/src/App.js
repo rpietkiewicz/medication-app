@@ -2,27 +2,27 @@ import React from 'react';
 import './App.css';
 import ListItems from './ListItems.js';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
+import {faTrash} from '@fortawesome/free-solid-svg-icons'; //import fortawesome to add icon library 
 
-library.add(faTrash);
+library.add(faTrash); //adding Trash icon from fortawesome
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      items: [],
+      items: [], //set to empty array
       currentItem: {
-        text:'',
+        text:'', //set to empty string
         key:''
       }
     }
-    this.handleInput = this.handleInput.bind(this);
+    this.handleInput = this.handleInput.bind(this); //this line and below three lines are bindings for the different list item methods
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
   }
 
-  handleInput(e) {
+  handleInput(e) { //method for handling the storage of the item in the list 
     this.setState({
       currentItem:{
         text: e.target.value,
@@ -31,7 +31,7 @@ class App extends React.Component {
     })
   }
 
-  addItem(e) {
+  addItem(e) { //method for adding item to the list
     e.preventDefault(); //prevent app from refreshing when Dodaj button is clicked
     const newItem = this.state.currentItem;
     console.log(newItem);
@@ -40,14 +40,14 @@ class App extends React.Component {
       this.setState({
         items:newItems,
         currentItem:{
-          text:'',
-          key:''
+          text:'', //empty string, because user will input for adding title to item
+          key:'' //each item added will also have its own unique key
         }
       })
     }
   }
 
-  deleteItem(key) {
+  deleteItem(key) { //method for deleting item from the list
     const filteredItems = this.state.items.filter(item =>
       item.key!==key);
       this.setState({
@@ -55,10 +55,10 @@ class App extends React.Component {
       })
   }
 
-  setUpdate(text, key) {
+  setUpdate(text, key) { //method for editing the item from the list
     const items = this.state.items;
-    items.map(item => {
-      if(item.key===key) {
+    items.map(item => {   
+      if(item.key===key) { //if statement within the arrow function for, item in list having same key
         item.text=text;
       }
     })
@@ -67,7 +67,7 @@ class App extends React.Component {
     })
   }
 
-  render() {
+  render() { //what the app will output in the browser
     return (
       <div className="App">
         <h2 className="title">Witamy na Lek!</h2>
